@@ -14,11 +14,12 @@ app.use("/api/auth", authRoutes)
 app.use("/api/message", messageRoutes)
 
 // ALWAYS SERVE FRONTEND BUILD ON RENDER
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join(__dirname, "frontend", "build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
+
 
 app.listen(PORT , ()=>{
     console.log(`listening to app on port ${PORT}`)
