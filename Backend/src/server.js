@@ -13,13 +13,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 
 // Serve frontend in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/build")));
+// if (process.env.NODE_ENV === "production") {
+app.use(express.static(path.join(__dirname, "Frontend/build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Frontend/build/index.html"));
+});
+
+// }
 
 app.listen(PORT, () => {
   console.log(`listening to app on port ${PORT}`);
