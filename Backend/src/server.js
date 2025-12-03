@@ -13,14 +13,12 @@ const __dirname = path.resolve();
 app.use("/api/auth", authRoutes)
 app.use("/api/message", messageRoutes)
 
+// ALWAYS SERVE FRONTEND BUILD ON RENDER
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-//make ready for deployement 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
-}
 
 app.listen(PORT , ()=>{
     console.log(`listening to app on port ${PORT}`)
